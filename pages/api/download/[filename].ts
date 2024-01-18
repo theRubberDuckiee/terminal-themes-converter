@@ -1,7 +1,7 @@
 // pages/api/download/[filename].ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
-import fs from 'fs/promises';
+import fs from 'fs';
 
 export default async function download(
   req: NextApiRequest,
@@ -18,7 +18,7 @@ export default async function download(
     const filePath = path.resolve(__dirname, '../../../../../generated', filename + '');
 
     // Read the file content as a Buffer
-    const fileContent = await fs.readFile(filePath);
+    const fileContent = await fs.promises.readFile(filePath);
 
     // Set the response headers for file download
     res.setHeader('Content-disposition', `attachment; filename=${filename}`);
