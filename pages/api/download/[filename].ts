@@ -1,6 +1,7 @@
+// pages/api/download/[filename].ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
-const fs = require('fs');
+import fs from 'fs/promises';
 
 export default async function download(
   req: NextApiRequest,
@@ -14,9 +15,7 @@ export default async function download(
       return;
     }
 
-    const filePath = path.join(
-      '/Users/jess/Projects/terminal-themes-converter/generated', filename+''
-    );
+    const filePath = path.resolve(__dirname, '../../../../../generated', filename + '');
 
     // Read the file content as a Buffer
     const fileContent = await fs.readFile(filePath);

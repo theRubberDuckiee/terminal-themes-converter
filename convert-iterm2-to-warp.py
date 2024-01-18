@@ -78,7 +78,8 @@ def convert_to_yaml(result):
 def main(txt_file_path):
     print('FUCK')
     # output_yaml_path = "~/.warp/themes"
-    output_yaml_path = "/Users/jess/Projects/terminal-themes-converter/generated"
+    current_directory = os.getcwd()
+    output_yaml_path = current_directory + '/generated'
     # output_yaml_path = os.path.expanduser(output_yaml_path)  # Expand tilde to the home directory
     filename = os.path.basename(txt_file_path)
     with open(txt_file_path, 'r') as file:

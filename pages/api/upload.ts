@@ -17,11 +17,12 @@ export default function upload(
     const fileNameWithoutExtension = fileNameWithExtension.substring(0, lastDotIndex);
 
     // Save the uploaded file temporarily
-    const filePath = path.join('/Users/jess/Projects/terminal-themes-converter/uploads', fileNameWithoutExtension + '.txt');
+    const filePath = path.resolve(__dirname, '../../../../uploads', fileNameWithoutExtension + '.txt');
     require('fs').writeFileSync(filePath, body.text);
 
     // Call your Python script with the uploaded file
-    const pythonScript = '/Users/jess/Projects/terminal-themes-converter/convert-iterm2-to-warp.py';
+    const pythonScript = path.resolve(__dirname, '../../../../convert-iterm2-to-warp.py');
+    console.log(pythonScript)
     exec(`python ${pythonScript} ${filePath}`, (error, stdout, stderr) => {
         if (error) {
             console.error('Error running Python script:', error);
@@ -29,7 +30,7 @@ export default function upload(
         }
 
         const generatedFileName = fileNameWithoutExtension + '.yaml';
-        const yamlFilePath = path.join('/Users/jess/Projects/terminal-themes-converter/generated', generatedFileName);
+        const yamlFilePath = path.resolve(__dirname, '../../../../generated', generatedFileName);
 
         // Send the download link as the response
         const downloadLink = `/api/download/${generatedFileName}`;
