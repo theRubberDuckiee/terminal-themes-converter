@@ -15,7 +15,7 @@ export default async function download(
     }
 
     const filePath = path.join(
-      '/Users/jess/Projects/terminal-themes-converter/generated', filename
+      '/Users/jess/Projects/terminal-themes-converter/generated', filename+''
     );
 
     // Read the file content as a Buffer
