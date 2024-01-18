@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
+    "mongodb": "^6.3.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

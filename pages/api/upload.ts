@@ -5,6 +5,13 @@ const { exec } = require('child_process');
 import * as xml2js from 'xml2js';
 const yaml = require('js-yaml');
 
+// Import the MongoDB driver
+const { MongoClient } = require('mongodb');
+
+// MongoDB connection string from MongoDB Atlas
+const uri = 'YOUR_MONGODB_CONNECTION_STRING';
+
+
 function convertRGBToHex(rgbArray: number[]): string {
   // Convert float values to integers
   const rgbIntegers = rgbArray.map(component => Math.round(component * 255));
@@ -164,19 +171,16 @@ export default async function upload(
         const generatedFileName = fileNameWithoutExtension + '.yaml';
         const yamlFilePath = path.join(process.cwd(), '/generated', generatedFileName);
         console.log('yamlFilePath: ', yamlFilePath)
-        require('fs').writeFileSync(yamlFilePath, body.text);
+        //require('fs').writeFileSync(yamlFilePath, body.text);
         console.log('wrote file')
 
         // Send the download link as the response
-        const downloadLink = `/api/download/${generatedFileName}`;
+        //const downloadLink = `/api/download/${generatedFileName}`;
 
         // Optionally, clean up: Delete the temporary uploaded and generated files
         // fs.unlinkSync(filePath);
         // fs.unlinkSync(yamlFilePath);
-        res.status(200).send({
-          downloadLink: downloadLink,
-          filename: fileNameWithoutExtension,
-      });
+        res.status(200).send(yamlString);
   } catch (error) {
       res.status(500).send('Error processing upload.');
   }

@@ -47,9 +47,28 @@ const FileUploadForm: React.FC = () => {
           method: 'POST',
           body: JSON.stringify({'name': file.name, 'text': fileContent}),
         })
-        const result = await response.json()
-        setDownloadLink(result.downloadLink);
-        setFileName(result.fileName);
+        const cheese = await response.text()
+        console.log(cheese)
+        // Create a Blob from the string content
+        const blob = new Blob([cheese], { type: 'application/yaml' });
+  
+        // Create a Blob URL for the file
+        const url = window.URL.createObjectURL(blob);
+  
+        // Create an anchor element to trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name + '.yaml';
+  
+        // Append the anchor to the document body and trigger the click event
+        document.body.appendChild(a);
+        a.click();
+  
+        // Remove the anchor and revoke the Blob URL
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        // setDownloadLink(result.downloadLink);
+        // setFileName(result.fileName);
       } catch (error) {
           console.error('Error uploading file:', error);
       }
