@@ -171,15 +171,7 @@ export default async function upload(
         const generatedFileName = fileNameWithoutExtension + '.yaml';
         const yamlFilePath = path.join(process.cwd(), '/generated', generatedFileName);
         console.log('yamlFilePath: ', yamlFilePath)
-        //require('fs').writeFileSync(yamlFilePath, body.text);
-        console.log('wrote file')
-
-        // Send the download link as the response
-        //const downloadLink = `/api/download/${generatedFileName}`;
-
-        // Optionally, clean up: Delete the temporary uploaded and generated files
-        // fs.unlinkSync(filePath);
-        // fs.unlinkSync(yamlFilePath);
+        console.log('hello?')
         res.status(200).send(yamlString);
   } catch (error) {
       res.status(500).send('Error processing upload.');
