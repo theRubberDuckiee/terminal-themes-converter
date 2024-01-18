@@ -7,13 +7,15 @@ export default function upload(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  console.log('can you see this?')
   const body = JSON.parse(req.body)
-  //console.log('body: ', body)
+  console.log('body: ', body)
   try {
     if (!req.body) {
         return res.status(400).send('No file uploaded.');
     }
     const fileNameWithExtension = body.name;
+    console.log('fileNameWithExtension: ', fileNameWithExtension)
     const lastDotIndex = fileNameWithExtension.lastIndexOf('.');
     const fileNameWithoutExtension = fileNameWithExtension.substring(0, lastDotIndex);
 
