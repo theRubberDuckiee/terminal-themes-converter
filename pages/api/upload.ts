@@ -158,11 +158,14 @@ export default async function upload(
     });
 
     const yamlString = yaml.dump(newText);
+    console.log('dumped')
     
 
         const generatedFileName = fileNameWithoutExtension + '.yaml';
         const yamlFilePath = path.join(process.cwd(), '/generated', generatedFileName);
+        console.log('yamlFilePath: ', yamlFilePath)
         await fs.promises.writeFile(yamlFilePath, yamlString);
+        console.log('wrote file')
 
         // Send the download link as the response
         const downloadLink = `/api/download/${generatedFileName}`;
