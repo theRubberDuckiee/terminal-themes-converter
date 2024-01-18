@@ -38,6 +38,10 @@ const FileUploadForm: React.FC = () => {
           console.error('No file selected.');
           return;
       }
+
+      //console.log('name: ', file.name)
+      //console.log('text:', fileContent)
+
       try {
         const response = await fetch('/api/upload', {
           method: 'POST',

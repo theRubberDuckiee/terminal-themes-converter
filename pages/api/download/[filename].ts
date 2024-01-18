@@ -15,7 +15,7 @@ export default async function download(
       return;
     }
 
-    const filePath = path.resolve(__dirname, '../../../../../generated', filename + '');
+    const filePath = path.join(process.cwd(), '/generated', filename + '');
 
     // Read the file content as a Buffer
     const fileContent = await fs.promises.readFile(filePath);
