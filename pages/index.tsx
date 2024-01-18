@@ -39,8 +39,8 @@ const FileUploadForm: React.FC = () => {
           return;
       }
 
-      //console.log('name: ', file.name)
-      //console.log('text:', fileContent)
+      console.log('name: ', file.name)
+      console.log('text:', fileContent)
 
       try {
         const response = await fetch('/api/upload', {
