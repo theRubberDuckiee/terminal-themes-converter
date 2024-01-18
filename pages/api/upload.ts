@@ -9,7 +9,6 @@ export default function upload(
 ) {
   console.log('can you see this?')
   const body = JSON.parse(req.body)
-  console.log('body: ', body)
   try {
     if (!req.body) {
         return res.status(400).send('No file uploaded.');
@@ -23,7 +22,7 @@ export default function upload(
     const filePath = path.join(process.cwd(), '/uploads', fileNameWithoutExtension + '.txt');
     console.log('filePath: ', filePath)
     require('fs').writeFileSync(filePath, body.text);
-
+    console.log("done")
     // Call your Python script with the uploaded file
     const pythonScript = path.join(process.cwd(), '/convert-iterm2-to-warp.py');
     console.log('pythonScript', pythonScript)
@@ -35,6 +34,7 @@ export default function upload(
 
         const generatedFileName = fileNameWithoutExtension + '.yaml';
         const yamlFilePath = path.join(process.cwd(), '/generated', generatedFileName);
+        console.log('yamlfilepath:', yamlFilePath)
 
         // Send the download link as the response
         const downloadLink = `/api/download/${generatedFileName}`;
