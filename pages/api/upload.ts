@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 const path = require('path');
-const fs = require('fs');
+import fs from 'fs';
 const { exec } = require('child_process');
  
-export default function upload(
+export default async function upload(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -21,7 +21,7 @@ export default function upload(
     // Save the uploaded file temporarily
     const filePath = path.join(process.cwd(), '/uploads', fileNameWithoutExtension + '.txt');
     console.log('filePath: ', filePath)
-    require('fs').writeFileSync(filePath, body.text);
+    await fs.writeFileSync(filePath, body.text);
     console.log("done")
     // Call your Python script with the uploaded file
     const pythonScript = path.join(process.cwd(), '/convert-iterm2-to-warp.py');
