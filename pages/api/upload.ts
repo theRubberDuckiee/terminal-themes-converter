@@ -164,7 +164,7 @@ export default async function upload(
         const generatedFileName = fileNameWithoutExtension + '.yaml';
         const yamlFilePath = path.join(process.cwd(), '/generated', generatedFileName);
         console.log('yamlFilePath: ', yamlFilePath)
-        await fs.promises.writeFile(yamlFilePath, yamlString);
+        require('fs').writeFileSync(yamlFilePath, body.text);
         console.log('wrote file')
 
         // Send the download link as the response
