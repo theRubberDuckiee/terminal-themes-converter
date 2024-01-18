@@ -21,7 +21,7 @@ export default async function upload(
     // Save the uploaded file temporarily
     const filePath = path.join(process.cwd(), '/uploads', fileNameWithoutExtension + '.txt');
     console.log('filePath: ', filePath)
-    await fs.writeFileSync(filePath, body.text);
+    await fs.promises.writeFile(filePath, body.text);
     console.log("done")
     // Call your Python script with the uploaded file
     const pythonScript = path.join(process.cwd(), '/convert-iterm2-to-warp.py');
